@@ -1,0 +1,9 @@
+# 196. Delete Duplicate Emails
+# remark: use inner join
+          condition of a.email = b.email to find duplicate email
+          condition of a.id > b.id to delete other except the first one in a
+
+delete a.*          
+from Person a
+join Person b on a.email = b.email
+where a.id > b.id;
