@@ -1,0 +1,7 @@
+# 1076. Project Employees II
+
+SELECT project_id 
+FROM Project
+GROUP BY employee_id
+ORDER BY COUNT(project_id) DESC
+LIMIT 1;
