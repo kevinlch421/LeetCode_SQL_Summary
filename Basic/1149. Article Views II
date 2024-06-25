@@ -1,0 +1,23 @@
+# 1149. Article Views II
+
+SELECT DISTINCT viewer_id AS id
+FROM Views
+GROUP BY viewer_id, view_date  
+HAVING COUNT(DISTINCT article_id) > 1
+ORDER BY 1 # means sorting values according to first column in the SELECT statement.
+
+# wrong case
+# not on the same date
+# no need to use the subquery as having can get the job done
+# not viewer_id but article_id to be count, cause it is to find people who viewed more than one article on the same date.
+
+SELECT view_id as id
+from Views
+group by view_id
+having count(view_id) >= (
+  SELECT count(view_id) as id
+  from Views
+  group by view_id
+)
+
+
