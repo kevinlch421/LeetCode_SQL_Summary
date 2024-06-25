@@ -1,0 +1,14 @@
+# 1082. sales analysis i
+# remark: since top seller maybe be one or more, ALL() 
+#         >= to check if the sum of price for each seller is all value in the set
+
+SELECT seller_id
+FROM Sales
+GROUP BY seller_id
+HAVING seller_id >= ALL ( 
+  SELECT SUM(seller_id) 
+  FROM Sales
+  GROUP BY seller_id
+)
+
+
