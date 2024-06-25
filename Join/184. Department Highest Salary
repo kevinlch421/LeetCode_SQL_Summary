@@ -1,0 +1,26 @@
+# 184. Department Highest Salary
+
+SELECT b.name AS Department, a.name AS Employee, a.Salary 
+FROM Employee a
+INNER JOIN Department b
+ON a.departmentId = b.id 
+WHERE (a.departmentId, a.salary) IN  (
+    SELECT departmentId, MAX(Salary)
+    FROM Employee
+    GROUP BY departmentId
+)
+
+# wrong case
+# remark: dont use left join but inner join, cause some some employee may have no department
+          dont use group by, but where since you are going to find more than one result form subquery
+
+SELECT b.name AS Department, a.name AS Employee, a.Salary 
+FROM Employee a
+LEFT JOIN Department b
+ON a.departmentId = b.id 
+GROUP BY a.id
+HAVING (a.departmentId, a.salary) IN  (
+    SELECT id, MAX(Salary)
+    FROM Employee
+    GROUP BY departmentId
+)
