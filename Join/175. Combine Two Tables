@@ -1,0 +1,22 @@
+# 175. Combine Two Tables
+# remark: The LEFT JOIN returns all records from the left table
+          The result is 0/ NULL records from the right side, if there is no match.
+          So see null is pretty sure it is LEFT JOIN
+
+| firstName | lastName | city          | state    |
+| --------- | -------- | ------------- | -------- |
+| Allen     | Wang     | null          | null     |
+| Bob       | Alice    | New York City | New York |
+
+SELECT firstName, lastName, city, state
+FROM Person a
+LEFT JOIN Address b
+ON a.personId = b.personId;
+
+
+
+
+
+
+
+
