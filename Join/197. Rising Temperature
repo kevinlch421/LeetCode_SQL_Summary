@@ -1,0 +1,18 @@
+# 197. Rising Temperature
+# remark: DATEDIFF() function returns the difference between two dates
+
+SELECT a.id
+From Weather a
+LEFT JOIN Weather b
+ON DATEDIFF(a.recordDate,b.recordDate)=1
+WHERE a.temperature > b.temperature
+
+# wrong case
+# some day have multiple temperature
+# a.recordDate = b.recordDate-1 implies that the recordDate in table b should be exactly one day after the recordDate in table a.
+
+SELECT b.id 
+FROM Weather a
+LEFT JOIN Weather b
+ON a.recordDate = b.recordDate-1
+WHERE b.temperature > a.temperature
