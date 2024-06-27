@@ -1,0 +1,10 @@
+# 512. Game Play Analysis II
+# remark, player_id is required to put on the where clause too, it helps to idnetify each player for specific day.
+
+SELECT player_id, device_id
+FROM Activity 
+WHERE (player_id, event_date) IN (
+    SELECT player_id, min(event_date) AS event_date
+    FROM Activity
+    GROUP BY player_id);
+  
