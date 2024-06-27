@@ -1,0 +1,11 @@
+# 570. Managers with at Least 5 Direct Reports
+# remark:
+# use inner join rather than left join (because it avoid returning the unmatch id with null managerId)
+# group by m.id, rather than m.name to (because some manager have two same name)
+ 
+
+SELECT m.name
+FROM Employee m
+INNER JOIN Employee e ON m.id = e.managerId
+GROUP BY m.id
+HAVING COUNT(e.managerID) >=5
