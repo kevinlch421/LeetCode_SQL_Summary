@@ -1,0 +1,8 @@
+# 580. Count Student Number in Departments
+
+SELECT b.dept_name, COUNT(*) AS student_number 
+FROM department a
+LEFT JOIN student b 
+ON a.department = b.department
+GROUP BY a.dept_id 
+ORDER BY 2 DESC AND 1;
