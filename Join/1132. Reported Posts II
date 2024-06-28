@@ -1,0 +1,14 @@
+# 1132. Reported Posts II
+
+WITH T AS (
+    select count(distinct b.post_id)/ count(distinct a.post_id) * 100 AS percentage
+    from Actions a
+    left join Removals b using(post_id)
+    where extra = 'spam'
+    group by action_date 
+)
+
+SELECT AVG(percentage) AS average_daily_percent 
+FROM T;
+
+
