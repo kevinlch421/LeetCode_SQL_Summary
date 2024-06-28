@@ -1,0 +1,6 @@
+# 1068. Product Sales Analysis I
+
+SELECT b.product_name, a.year, a.price AS price 
+FROM Sales a
+JOIN Product b
+USING(product_id);
