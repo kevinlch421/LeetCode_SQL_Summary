@@ -1,0 +1,8 @@
+# 614. Second Degree Follower
+
+SELECT a.follower AS follower, COUNT(*) AS num
+FROM Follow AS a
+INNER JOIN Follow AS b 
+ON f1.follower = f2.followee
+GROUP BY f1.follower
+ORDER BY f1.follower ASC;
