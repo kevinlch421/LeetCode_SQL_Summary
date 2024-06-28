@@ -1,0 +1,25 @@
+# 1077. Project Employees III
+# remark: dont use GROUP BY but the PARTITION BY, because it is more confusing
+
+---------------------------------------------------------------------------------------------------------------------------------------
+WITH T AS (
+    SELECT *, RANK() OVER(PARTITION BY project_id ORDER BY experience_years DESC) AS RANK
+    FROM Project
+    JOIN Employee USING (employee_id)
+) 
+
+SELECT project_id, employee_id
+FROM T
+WHERE RANK = 1;
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+# wrong case:
+SELECT project_id, employee_id
+FROM (
+    SELECT project_id, experience_years
+    FROM Project a
+    LEFT JOIN Employee b
+    USING(employee_id)
+    ORDERY BY experience_years
+    LIMIT 1
+);
