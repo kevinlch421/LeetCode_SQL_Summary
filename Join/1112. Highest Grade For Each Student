@@ -1,0 +1,13 @@
+# 1112. Highest Grade For Each Student
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+WITH T AS (
+  SELECT *, RANK() PARTITION BY(student_id ORDER BY grade DESC) AS RANK
+  FROM Enrollments
+)
+
+SELECT student_id, course_id, grade
+FROM Enrollments 
+WHERE RANK = 1
+ORDER BY student_id;
+
