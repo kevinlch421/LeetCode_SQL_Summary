@@ -1,0 +1,24 @@
+# 607. Sales Person
+
+SELECT name 
+FROM SalesPerson 
+WHERE sales_id NOT IN (
+    SELECT sales_id
+    FROM Orders 
+    WHERE com_id = (
+        SELECT com_id 
+        FROM Company 
+        WHERE name = 'RED'
+));
+
+# dont know why this is not working:
+
+SELECT distinct a.name, b.com_id, b.amount
+FROM SalesPerson 
+WHERE LEFT JOIN Orders b
+ON a.sales_id = b.sales_id 
+WHERE order_id IS NULL OR com_id <> (
+    SELECT com_id 
+    FROM Company
+    WHERE name = 'RED'
+);
