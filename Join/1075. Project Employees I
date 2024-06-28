@@ -1,0 +1,7 @@
+# 1075. Project Employees I1075. Project Employees I
+
+SELECT project_id, ROUND(AVG(b.experience_years), 2) AS average_years
+FROM Project a
+LEFT JOIN Employee b
+USING(employee_id)
+GROUP BY project_id;
