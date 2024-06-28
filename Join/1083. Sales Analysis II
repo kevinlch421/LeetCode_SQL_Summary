@@ -1,0 +1,8 @@
+# 1083. Sales Analysis II
+------------------------------------------------------------------------------------------------------------
+
+SELECT buyer_id    
+FROM Sales a
+INNER JOIN Product b USING(product_id)
+GROUP BY product_id
+HAVING SUM(product_name = 'S8') > 0 AND SUM(product_name = 'iPhone') = 0;
