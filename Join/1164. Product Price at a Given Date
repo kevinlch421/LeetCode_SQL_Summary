@@ -1,0 +1,37 @@
+1164. Product Price at a Given Date
+
+-----------------------------------------------------------------------------------------------------------------------------
+method 1:
+-----------------------------------------------------------------------------------------------------------------------------
+with a as (select distinct product_id from products),
+    b as (
+    select product_id, new_price as price
+    from Products
+    where (product_id, change_date) in (
+        select product_id, max(change_date) as change_date
+        from Products
+        where change_date <= '2019-08-16'
+        group by product_id
+))
+
+select product_id, ifnull(price, 10) as price
+from a
+left join b using(product_id);
+
+-----------------------------------------------------------------------------------------------------------------------------
+method 2:
+-----------------------------------------------------------------------------------------------------------------------------
+#select product_id, new_price as price
+#from Products
+#where (product_id, change_date) 
+#IN (
+##    select product_id, max(change_date) as date
+#    from Products
+#    WHERE change_date <= '2019-08-16'
+#    GROUP BY product_id 
+#)
+#UNION
+#select product_id, 10 as price
+#from Products
+#GROUP BY product_id 
+#having min(change_date) > '2019-08-16'
